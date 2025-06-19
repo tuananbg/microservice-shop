@@ -1,0 +1,22 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: notification-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # 1.0 = trace tất cả request (có thể giảm về 0.1 ở production)
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411  # Địa chỉ Zipkin server (port 9411)
